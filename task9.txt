@@ -1,0 +1,140 @@
+CREATE DATABASE joins
+
+USE joins;
+
+CREATE TABLE fruit(
+Id INT PRIMARY KEY,
+f_Name VARCHAR(255),
+f_Color VARCHAR(255),
+f_Total INT
+);
+
+INSERT INTO fruit(
+Id,
+f_Name,
+f_Color,
+F_Total
+)
+VALUES(
+1,
+'Orange',
+'Orange',
+12
+);
+GO
+
+INSERT INTO fruit(
+Id,
+f_Name,
+f_Color,
+F_Total
+)
+VALUES(
+2,
+'Apple',
+'Red',
+18
+);
+GO
+
+INSERT INTO fruit(
+Id,
+f_Name,
+f_Color,
+F_Total
+)
+VALUES(
+3,
+'Mango',
+'Yellow',
+10
+);
+GO
+
+INSERT INTO fruit(
+Id,
+f_Name,
+f_Color,
+F_Total
+)
+VALUES(
+4,
+'kiwi',
+'Green',
+18
+);
+GO
+
+CREATE TABLE vegetable(
+Id INT PRIMARY KEY,
+v_Name VARCHAR(255),
+v_Color VARCHAR(255),
+v_Total INT
+);
+
+INSERT INTO vegetable(
+Id,
+v_Name,
+v_Color,
+v_Total
+)
+VALUES(
+1,
+'Tomato',
+'Red',
+18
+);
+INSERT INTO vegetable(
+Id,
+v_Name,
+v_Color,
+v_Total
+)
+VALUES(
+2,
+'Brinjal',
+'Violet',
+22
+);
+INSERT INTO vegetable(
+Id,
+v_Name,
+v_Color,
+v_Total
+)
+VALUES(
+3,
+'Crrot',
+'Orange',
+17
+);
+INSERT INTO vegetable(
+Id,
+v_Name,
+v_Color,
+v_Total
+)
+VALUES(
+4,
+'chlli',
+'Green',
+18
+);
+
+
+SELECT
+    f_Color,
+    SUM(f_Total) AS TotalQuantity
+FROM
+    fruit
+GROUP BY
+    f_Color;
+
+	
+SELECT
+    v_Color,
+    SUM(v_Total) AS TotalQuantity
+FROM
+    vegetable
+GROUP BY
+    v_Color;

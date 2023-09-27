@@ -1,0 +1,115 @@
+USE student55;
+
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY ,
+    FirstName VARCHAR(255),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    DateOfBirth DATE,
+    Salary INT
+);
+USE student55;
+GO
+
+CREATE PROCEDURE Createe1
+@EmployeeID INT ,
+    @FirstName VARCHAR(255),
+    @LastName VARCHAR(50),
+    @Email VARCHAR(100),
+    @DateOfBirth DATE,
+    @Salary INT
+AS
+BEGIN
+    INSERT INTO Employee (EmployeeID,FirstName, LastName, Email, DateOfBirth, Salary)
+    VALUES ( @EmployeeID,@FirstName, @LastName, @Email, @DateOfBirth, @Salary);
+END;
+EXEC Createe1
+@EmployeeID=1,
+    @FirstName = 'Karthik',
+    @LastName = 'MM',
+    @Email = 'karthy@gmail.com',
+    @DateOfBirth = '1990-05-15',
+    @Salary = 55000;
+
+	EXEC Createe1
+@EmployeeID=2,
+    @FirstName = 'Ammu',
+    @LastName = 'CH',
+    @Email = 'Ammmu@gmail.com',
+    @DateOfBirth = '1994-05-15',
+    @Salary = 50000;
+
+	EXEC Createe1
+@EmployeeID=3,
+    @FirstName = 'Abraham',
+    @LastName = 'John',
+    @Email = 'john@gmail.com',
+    @DateOfBirth = '1998-05-15',
+    @Salary = 45000;
+	EXEC Createe1
+@EmployeeID=4,
+    @FirstName = 'Arunima',
+    @LastName = 'Nair',
+    @Email = 'nima@gmail.com',
+    @DateOfBirth = '1999-05-15',
+    @Salary = 20000;
+
+	--//read//--
+	CREATE PROCEDURE Getelement1
+	@EmployeeID INT 
+AS
+BEGIN
+    SELECT * FROM Employee
+	WHERE EmployeeID=@EmployeeID;
+END;
+
+EXEC Getelement1
+@EmployeeID=4;
+
+	CREATE PROCEDURE Getelement5
+	@FirstName VARCHAR(255) 
+AS
+BEGIN
+    SELECT * FROM Employee
+	WHERE FirstName=@FirstName;
+END;
+
+EXEC Getelement5
+@FirstName='Abraham';
+
+CREATE PROCEDURE Updatee1
+  @EmployeeID INT ,
+    @FirstName VARCHAR(255),
+    @LastName VARCHAR(50),
+    @Email VARCHAR(100),
+    @DateOfBirth DATE,
+    @Salary INT
+AS
+BEGIN
+    UPDATE Employee
+    SET FirstName = @FirstName,
+        LastName = @LastName,
+        Email = @Email,
+        DateOfBirth = @DateOfBirth,
+        Salary = @Salary
+    WHERE EmployeeID = @EmployeeID;
+END;
+
+EXEC Updatee1
+@EmployeeID=2,
+    @FirstName = 'jaimson',
+    @LastName = 'MM',
+    @Email = 'jai@gmail.com',
+    @DateOfBirth = '1994-05-15',
+    @Salary = 54000;
+
+
+	CREATE PROCEDURE Deletee1
+    @EmployeeID INT
+AS
+BEGIN
+    DELETE FROM Employee WHERE EmployeeID = @EmployeeID;
+END;
+
+EXEC Deletee1
+@EmployeeID=2;

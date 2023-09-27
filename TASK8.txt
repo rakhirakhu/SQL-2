@@ -1,0 +1,102 @@
+
+CREATE TABLE Employee (
+    EmployeeID INT PRIMARY KEY,
+    LastName VARCHAR(50),
+    FirstName VARCHAR(50),
+    Age INT,
+    DOB DATE,
+    Place VARCHAR(50),
+    State VARCHAR(50),
+    Email VARCHAR(100)
+)
+
+
+CREATE PROCEDURE ManageEmployee
+    @Operation VARCHAR(10),
+    @EmployeeID INT,
+    @LastName NVARCHAR(50),
+    @FirstName NVARCHAR(50),
+    @Age INT,
+    @DOB DATE,
+    @Place NVARCHAR(50),
+    @State NVARCHAR(50),
+    @Email NVARCHAR(100)
+AS
+BEGIN
+    IF @Operation = 'CREATE'
+    BEGIN
+        INSERT INTO Employee (EmployeeID, LastName, FirstName, Age, DOB, Place, State, Email)
+        VALUES (@EmployeeID, @LastName, @FirstName, @Age, @DOB, @Place, @State, @Email)
+    END
+    ELSE IF @Operation = 'READ'
+    BEGIN
+        SELECT * FROM Employee WHERE EmployeeID = @EmployeeID
+    END
+    ELSE IF @Operation = 'UPDATE'
+    BEGIN
+        UPDATE Employee
+        SET LastName = @LastName,
+            FirstName = @FirstName,
+            Age = @Age,
+            DOB = @DOB,
+            Place = @Place,
+            State = @State,
+            Email = @Email
+        WHERE EmployeeID = @EmployeeID
+    END
+    ELSE IF @Operation = 'DELETE'
+    BEGIN
+        DELETE FROM Employee WHERE EmployeeID = @EmployeeID
+    END
+END
+
+EXEC Employee
+@EmployeeID=1,
+  @LastName ='bb',
+            @FirstName ='manu',
+            @Age = 24,,
+            @DOB = '1999-12-11',
+            @Place = 'kollam',
+            @State = 'kochi',
+            @Email = 'aa@gmail.com'
+
+
+EXEC Employee
+@EmployeeID=2,
+  @LastName ='kk',
+            @FirstName ='anu',
+            @Age = 24,,
+            @DOB = '1999-12-11',
+            @Place = 'kochi',
+            @State = 'kochi',
+            @Email = 'aa@gmail.com'
+
+      EXEC Employee
+@EmployeeID=3,
+  @LastName ='jj',
+            @FirstName ='veena',
+            @Age = 25,,
+            @DOB = '1998-12-11',
+            @Place = 'kollam',
+            @State = 'kochi',
+            @Email = 'aa@gmail.com'
+
+
+			--//read//--
+			EXEC Employee
+			@ManageEmployee='Read',
+			@FirstName='veena',
+
+
+
+			--//update//--
+			EXEC Employee
+			@ManageEmployee='Update',
+			@FirstName='veena',
+			@Place='kollam',
+
+			--//delete--//
+
+			EXEC Employee
+			@ManageEmployee='delete',
+			@LastName='JJ'

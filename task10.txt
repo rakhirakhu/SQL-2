@@ -1,0 +1,235 @@
+CREATE DATABASE employee
+
+USE employee;
+
+--//CREATE//--
+CREATE TABLE employee1(
+  Em_Id INT PRIMARY KEY,
+  First_Name VARCHAR(255),
+  Last_Name VARCHAR(255),
+  Salary INT
+);
+--//INSERT//--
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+1,
+'Akhil',
+'Joseph',
+15000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+2,
+'Manju',
+'Anand',
+28000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+3,
+'Femi',
+'Binu',
+35000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+4,
+'kiran',
+'Aravindh',
+18000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+5,
+'Arjun',
+'KK',
+15000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+6,
+'Sam',
+'Joy',
+50000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+7,
+'manu',
+'Anandh',
+55000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+8,
+'Ani',
+'Joseph',
+85000
+);
+GO
+
+INSERT INTO employee1(
+Em_Id,
+First_Name,
+Last_Name,
+Salary
+)
+VALUES(
+9,
+'Aswin',
+'S',
+79000
+);
+GO
+
+
+CREATE TABLE department2(
+D_Id INT PRIMARY KEY,
+First_Name VARCHAR(255),
+Last_Name VARCHAR(255),
+Department VARCHAR(255)
+);
+GO
+
+--//INSERT//--
+INSERT INTO department2(
+D_Id,
+First_Name,
+Last_Name,
+Department
+)
+VALUES(
+1,
+'Aswin',
+'s',
+'BTECH'
+);
+GO 
+INSERT INTO department2(
+D_Id,
+First_Name,
+Last_Name,
+Department
+)
+VALUES(
+2,
+'Manju',
+'Anandh',
+'BTECH'
+);
+GO 
+
+INSERT INTO department2(
+D_Id,
+First_Name,
+Last_Name,
+Department
+)
+VALUES(
+3,
+'Sam',
+'Jos',
+'MCA'
+);
+GO 
+INSERT INTO department2(
+D_Id,
+First_Name,
+Last_Name,
+Department
+)
+VALUES(
+4,
+'Ammu',
+'MM',
+'BCA'
+);
+GO 
+INSERT INTO department2(
+D_Id,
+First_Name,
+Last_Name,
+Department
+)
+VALUES(
+5,
+'Kiran',
+'Mohan',
+'MTECH'
+);
+GO 
+INSERT INTO department2(
+D_Id,
+First_Name,
+Last_Name,
+Department
+)
+VALUES(
+6,
+'Nidha',
+'Varma',
+'MTECH'
+);
+GO 
+MERGE INTO employee1 AS E
+USING department2 AS D
+ON E.First_Name = D.First_Name AND E.Last_Name = D.Last_Name
+WHEN MATCHED THEN
+    UPDATE SET E.Department = D.Department
+WHEN NOT MATCHED THEN
+    INSERT (Em_Id, First_Name, Last_Name, Salary, Department)
+    VALUES (NULL, D.First_Name, D.Last_Name, NULL, D.Department);
